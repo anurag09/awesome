@@ -1,0 +1,64 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.BUILD-SNAPSHOT'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+group = 'com.awesome'
+project.archivesBaseName = 'awesome'
+project.applicationName = 'awesome'
+project.mainClassName = "com.awesome.AwesomeApplication"
+
+idea {
+	module {
+		inheritOutputDirs = false
+		outputDir = file("$buildDir/classes/main/")
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+jar {
+	doFirst {
+		from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	}
+	exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+	manifest {
+		attributes 'Main-Class': project.mainClassName
+		attributes 'Implementation-Title': 'awesome'
+		attributes 'Implementation-Version': project.version
+		attributes 'Implementation-Vendor': 'Mishra'
+		attributes 'Implementation-Vendor-Id': 'com.awesome'
+		attributes 'Built-On': new Date().format("yyyy-MM-dd hh:mm:ss")
+	}
+}
+
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter')
+	compile group: 'junit', name: 'junit', version: '4.12'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.1.RELEASE'
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
