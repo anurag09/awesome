@@ -8,15 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class MyController {
 
-    @RequestMapping(value = "/user/id", method = RequestMethod.GET)
-    public String login(){
-        // username and password
-        return "success";
-    }
-
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/anurag", method = RequestMethod.POST)
     public String create(){
         // username and password
         return "success";
     }
+
+
 }
