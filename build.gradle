@@ -19,6 +19,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'application'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 group = 'com.awesome'
 project.archivesBaseName = 'awesome'
@@ -62,6 +63,11 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.5.2.RELEASE'
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+	compile group: 'javax.persistence', name: 'persistence-api', version: '1.0.2'
+	compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.11.1.RELEASE'
+
+
+
 
 	testCompile('org.springframework.boot:spring-boot-starter-test:2.0.0.BUILD-SNAPSHOT')
 }
