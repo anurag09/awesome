@@ -1,14 +1,12 @@
 package com.awesome.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 /**
  * Created by Anurag Mishra on 14-04-2017.
  */
 @Entity
-public class Store {
+public class Stores {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
