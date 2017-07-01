@@ -1,6 +1,7 @@
 package com.awesome.service;
 
 import com.awesome.beans.Store;
+import com.awesome.domain.Categories;
 import com.awesome.domain.Stores;
 import com.awesome.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +24,13 @@ public class StoreService {
         storeRepository.save(store1);
     }
 
+    public Store getStore(Long id){
+        Stores stores = storeRepository.findOne(id);
+        Store store = new Store();
+        store.setId(stores.getId());
+        store.setName(stores.getName());
+        return store;
+
+
+    }
 }

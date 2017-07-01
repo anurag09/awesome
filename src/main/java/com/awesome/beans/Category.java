@@ -1,9 +1,9 @@
 package com.awesome.beans;
 
 /**
- * Created by Anurag Mishra on 14-04-2017.
+ * Created by Anurag Mishra on 07-05-2017.
  */
-public class Store {
+public class Category {
     private Long id;
     private String name;
 

@@ -1,18 +1,33 @@
 package com.awesome.domain;
 
+import com.awesome.beans.Category;
+
 import javax.persistence.*;
 
 /**
- * Created by Anurag Mishra on 14-04-2017.
+ * Created by Anurag Mishra on 17-06-2017.
  */
 @Entity
-public class Stores {
+public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Categories categories;
+
+
+    public Categories getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Categories categories) {
+        this.categories = categories;
+    }
 
     public Long getId() {
+
         return id;
     }
 

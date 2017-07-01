@@ -20,4 +20,10 @@ public class StoreController {
        storeService.createStore(store);
     }
 
+    @RequestMapping(value = "/store/{id}" , method = RequestMethod.GET)
+    public Store getStore(@PathVariable Long id){
+        Store store = storeService.getStore(id);
+        return store;
+    }
+
 }
