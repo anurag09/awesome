@@ -18,6 +18,7 @@ public class CategoryController {
     public void createCategory(@RequestBody Category category){
         categoryService.createCategory(category);
     }
+
     @RequestMapping(value = "/category/{id}" , method = RequestMethod.GET)
     public Category getCategory(@PathVariable Long id){
         Category category = categoryService.getCategory(id);
