@@ -17,7 +17,6 @@ public class Products {
     @JoinColumn(name = "category_id")
     private Categories categories;
 
-
     public Categories getCategories() {
         return categories;
     }

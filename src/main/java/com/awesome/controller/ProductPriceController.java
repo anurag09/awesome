@@ -6,9 +6,13 @@ package com.awesome.controller;
 
 import com.awesome.beans.ProductPriceStore;
 import com.awesome.domain.ProductPriceByStore;
+import com.awesome.domain.Products;
 import com.awesome.service.ProductPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ProductPriceController {
@@ -19,6 +23,17 @@ public class ProductPriceController {
     @ResponseBody
     public void createProductPrice(@RequestBody ProductPriceStore productPriceStore){
         productPriceService.createProductPrice(productPriceStore);
+    }
+
+    @RequestMapping(value = "/productPrice/{storeId}", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<Long,List<Products>> getProductsByStore(@PathVariable Long storeId){
+        List<String> productDetail = productPriceService.getProductDetail(storeId);
+        Map<Long,List<Products>> productByStore = productPriceService.getProductListByStore();
+        return productByStore;
 
     }
+
+
+
 }
