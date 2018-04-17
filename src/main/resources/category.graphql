@@ -1,0 +1,16 @@
+schema {
+ query: Query
+}
+
+
+type Query {
+  allCategories : [Categories]
+  category(id: Long): Categories
+}
+
+
+
+type Categories {
+    id: Long
+    name: String
+}
