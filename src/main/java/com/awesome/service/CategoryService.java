@@ -6,6 +6,10 @@ import com.awesome.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * Created by Anurag Mishra on 07-05-2017.
  */
@@ -34,10 +38,26 @@ public class CategoryService {
 
     public void updateCtegory(Category category){
         Categories categories = new Categories();
-        categories.setName("Cosmetic");
-        categories.setId((long) 1);
-
+        categories.setName(category.getName());
+        categories.setId(category.getId());
         categoryRepository.save(categories);
+    }
 
+    public void deleteCategory(Long id){
+        categoryRepository.delete(id);
+    }
+
+    public List<Category> getCategories(){
+        Iterable<Categories> categories = categoryRepository.findAll();
+        Iterator<Categories> iterator = categories.iterator();
+        List<Category> lis = new ArrayList<>();
+        while (iterator.hasNext()){
+            Categories cat = iterator.next();
+            Category category = new Category();
+        category.setId(cat.getId());
+        category.setName(cat.getName());
+        lis.add(category);
+        }
+        return lis;
     }
 }

@@ -49,19 +49,24 @@ public class ProductPriceService {
         return productNames;
     }
 
-    public  Map<Long, List<Products>> getProductListByStore(){
+    public  Map<Long, List<Product>> getProductListByStore(){
         Iterable<ProductPriceByStore> list =  productPriceRepository.findAll();
         Iterator itr = list.iterator();
-        Map<Long,List<Products>> map = new HashMap<>();
+        Map<Long,List<Product>> map = new HashMap<>();
         while(itr.hasNext()){
             ProductPriceByStore productPriceByStore = (ProductPriceByStore)itr.next();
             Long store = productPriceByStore.getStores().getId();
+            Products products = productPriceByStore.getProducts();
+            Product product = new Product();
+            product.setId(products.getId());
+            product.setName(products.getName());
+
             if(map.containsKey(store)){
-                map.get(store).add(productPriceByStore.getProducts());
+                map.get(store).add(product);
             }else{
-                List<Products> product = new ArrayList<>();
-                product.add(productPriceByStore.getProducts());
-                map.put(store,product);
+                List<Product> productList = new ArrayList<>();
+                productList.add(product);
+                map.put(store,productList);
 
             }
         }return map;

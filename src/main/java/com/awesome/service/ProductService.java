@@ -3,6 +3,7 @@ package com.awesome.service;
 import com.awesome.beans.Product;
 import com.awesome.domain.Categories;
 import com.awesome.domain.Products;
+import com.awesome.repository.ProductJdbcRepository;
 import com.awesome.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ import java.util.List;
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductJdbcRepository productJdbcRepository;
 
     public void createProduct(Product product) {
         Products product1 = new Products();
@@ -36,6 +39,29 @@ public class ProductService {
         return product;
     }
 
+    public void updateProductCategory(Product product){
+        productJdbcRepository.updateCategory(product);
+    }
+
+
+    public void insertProductbyid(Product product){
+        Long id = product.getId();
+        String name = product.getName();
+        productJdbcRepository.insertProduct(id, name);
+    }
+
+
+
+    public Product getProductByItsId(Long id){
+       Products products =  productJdbcRepository.gtProductById(id);
+        Product product = new Product();
+        product.setId(products.getId());
+        product.setName(products.getName());
+        product.setCategoryId(products.getCategories().getId());
+        product.setCategoryName(products.getCategories().getName());
+        return product;
+    }
+
     public List<Product> getAllProducts(){
         Iterable<Products> products = productRepository.findAll();
         List<Product> productBean = new ArrayList<>();
@@ -43,4 +69,9 @@ public class ProductService {
         return productBean;
     }
 
+    public List<Product> getAllProductsBYJDBC(){
+        Iterable<Products> products = productJdbcRepository.getAllProductBYId();
+        List<Product> productList = new ArrayList<>();
+        return  productList;
+    }
 }

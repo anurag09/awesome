@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "car">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/car.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"/>
+    <title>Cars Available in Our Showroom :</title>
+</head>
+
+<body ng-controller = "CarsController as carCtrl">
+
+   <table class="table table-bordered table-hover">
+       <thead>
+          <tr><th colspan="3">Drivers of Every Model Available</th></tr>
+          <p>{{product.id}}</p>
+          <p>{{product.name}}</p>
+       </thead>
+       <tbody>
+       <th>Car Number</th>
+       <th>Car Name</th>
+       <th>Car Model</th>
+            <tr ng-repeat = "Car in carList">
+                <td>{{$index + 1}}</td>
+                <td>{{Car.name}}</td>
+                <td>{{Car.model}}</td>
+
+                <td>
+                    <button type="button" ng-click="removeCar($index)">Remove Car</button>
+                </td>
+            </tr>
+       </tbody>
+
+   </table>
+   <fieldset>
+       <!--<legend>Add Car</legend>-->
+       <input type="text" ng-model="name" placeholder="Name" /><br/>
+       <input type="text" ng-model="model" placeholder="Model" /><br />
+
+       <button type="button" ng-click="addCar()">Add Car</button>
+
+   </fieldset>
+</body>
+</html>
