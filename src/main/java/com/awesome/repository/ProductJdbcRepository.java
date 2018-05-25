@@ -45,20 +45,20 @@ public class ProductJdbcRepository  {
         return jdbcTemplate.update("update products set category_id = ? where id = ?", product.getId(),product.getCategoryId());
     }
 
-    public List<Products> getAllProductBYId(){
-        return jdbcTemplate.queryForList("Select * from products", new RowMapper<Products>(){
-
-            @Override
-            public Products mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Products products = new Products();
-                List<Products> list = new ArrayList<>();
-                while (rs.next()){
-                    products.setId(rs.getLong("id"));
-                    products.setName(rs.getString("name"));
-                    list.add(products);
-                }
-                return list;
-            }
-        });
-    }
+//    public List<Products> getAllProductBYId(){
+//        return jdbcTemplate.queryForList("Select * from products", new RowMapper<Products>(){
+//
+//            @Override
+//            public Products mapRow(ResultSet rs, int rowNum) throws SQLException {
+//                Products products = new Products();
+//                List<Products> list = new ArrayList<>();
+//                while (rs.next()){
+//                    products.setId(rs.getLong("id"));
+//                    products.setName(rs.getString("name"));
+//                    list.add(products);
+//                }
+////                return list;
+//            }
+//        });
+//    }
 }

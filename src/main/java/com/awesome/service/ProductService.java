@@ -69,9 +69,9 @@ public class ProductService {
         return productBean;
     }
 
-    public List<Product> getAllProductsBYJDBC(){
-        Iterable<Products> products = productJdbcRepository.getAllProductBYId();
-        List<Product> productList = new ArrayList<>();
-        return  productList;
-    }
+//    public List<Product> getAllProductsBYJDBC(){
+//        Iterable<Products> products = productJdbcRepository.getAllProductBYId();
+//        List<Product> productList = new ArrayList<>();
+//        return  productList;
+//    }
 }
