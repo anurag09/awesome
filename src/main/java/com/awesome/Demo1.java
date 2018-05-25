@@ -9,6 +9,6 @@ import java.util.Map;
 public class Demo1 {
     public static void main(String[] args) {
         Map<Integer,String> map = new HashMap();
-        
+
     }
 }
